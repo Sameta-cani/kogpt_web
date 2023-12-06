@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .gpt_generator import initialize_model_and_tokenizer, generate_sentences
 
 # 모델 및 토크나이저 초기화
-device, model, tokenizer= initialize_model_and_tokenizer()
+device, model, tokenizer = initialize_model_and_tokenizer()
 
 def index(request):
     if request.method == 'POST':

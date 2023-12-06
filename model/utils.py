@@ -23,23 +23,8 @@ def generate(input_text, tokenizer, model, num):
 
     return sentence_list
 
-def calculate_normalized_weight_with_smoothing(votes, comments, scraps, weight_voting=0.7, weight_comment=0.1, weight_scrapping=0.2, smoothing=1e-5, min_smoothing=1e-8):
-    """
-    Calculate the normalized weighted score based on votes, scraps, and comments with smoothing.
+def calculate_normalized_weight(votes, comments, scraps, weight_voting=0.7, weight_comment=0.1, weight_scrapping=0.2, smoothing=1e-5, min_smoothing=1e-8):
 
-    Parameters:
-    - votes: Number of votes
-    - comments: Number of comments
-    - scraps: Number of scraps
-    - weight_voting: Weight for votes
-    - weight_comment: Weight for comments
-    - weight_scrapping: Weight for scraps
-    - smoothing: Smoothing value to prevent division by zero
-    - min_smoothing: Minimum smoothing value for cases where all weights are zero
-
-    Returns:
-    - Normalized weighted score
-    """
     total_weight = weight_voting + weight_scrapping + weight_comment + (3 * smoothing)
 
     # 가중치 정규화

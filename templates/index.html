@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="ko">
+
 <head>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     <h1>opt_web</h1>
     <form method="POST" onsubmit="return validateForm()">
@@ -25,13 +27,13 @@
     </form>
     <h2>생성된 문장</h2>
     {% for text in gen_text %}
-        <div>
-            {{text}}
-        </div>
+    <div>
+        {{text}}
+    </div>
     {% endfor %}
     <script>
         // 페이지 로드 시 localStorage에 저장된 값이 있으면 가져와서 각 입력 필드에 설정
-        window.onload = function() {
+        window.onload = function () {
             var board = localStorage.getItem('board');
             var genNum = localStorage.getItem('genNum');
             var mxl = localStorage.getItem('mxl');
@@ -67,4 +69,5 @@
         }
     </script>
 </body>
+
 </html>

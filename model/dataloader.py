@@ -2,13 +2,13 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset, DataLoader, WeightedRandomSampler
 from transformers import DataCollatorForLanguageModeling
-from utils import calculate_normalized_weight_with_smoothing
+from utils import calculate_normalized_weight
 
 class GPTDataset(Dataset):
     def __init__(self, tokenizer, file_path):
         # 데이터 불러오기 및 가중치 계산
         data = pd.read_csv(file_path)
-        data['Weighted_Score'] = data.apply(lambda row: calculate_normalized_weight_with_smoothing(row['votes'], row['comment_nums'], row['scraps']), axis=1)
+        data['Weighted_Score'] = data.apply(lambda row: calculate_normalized_weight(row['votes'], row['comment_nums'], row['scraps']), axis=1)
         weights = torch.tensor(data['Weighted_Score'].values, dtype=torch.float32)
         weights = (weights - weights.min()) / (weights.max() - weights.min()) + 1
         
